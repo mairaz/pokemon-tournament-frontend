@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-end m-2">
     <select class="form-select m-0" aria-label="Default select example" style="width:150px"
-        (change)="changeSize($event)" [ngModel]="size$| async">
+        (change)="changeSize($event)" [ngModel]="pageSize$| async">
         <option value="4">4 items</option>
         <option value="8">8 items</option>
         <option value="16">16 items</option>
@@ -17,7 +17,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item" (click)="previousPage()">
-                <a class="page-link" aria-label="Previous">
+                <a class="page-link" aria-label="Previous" [class.disabled]="currentPage$.value == 1">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -27,7 +27,7 @@
             </li>
             }
             <li class="page-item" (click)="nextPage()">
-                <a class="page-link" aria-label="Next">
+                <a class="page-link" aria-label="Next" [class.disabled]="currentPage$.value === pageSize$.value || pageSize$.value == totalPokemons">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

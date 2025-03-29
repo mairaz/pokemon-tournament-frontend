@@ -15,22 +15,24 @@ import { FormsModule } from '@angular/forms';
 export class PokemonsListComponent {
   @Input('pokemons') set pokemons(pokemons: Pokemon[]) {
     this.pokemons$.next(pokemons);
+    this.totalPokemons = pokemons.length;
     this.currentPage$.next(1);
   }
   pokemons$ = new BehaviorSubject<Pokemon[]>([]);
-  size$ = new BehaviorSubject<number>(4);
-  totalPokemons = 16;
+  pageSize$ = new BehaviorSubject<number>(4);
+  totalPokemons!: number;
   currentPage$ = new BehaviorSubject<number>(1);
+  
 
   get pages() {
     return Array.from({ length: this.pagesCount }, (_, i) => i + 1);
   }
   
   get pagesCount() {
-    return Math.ceil(this.totalPokemons / this.size$.value);
+    return Math.ceil(this.totalPokemons / this.pageSize$.value);
   }
 
-  pokemonsPage$ = combineLatest([this.size$, this.currentPage$, this.pokemons$]).pipe(
+  pokemonsPage$ = combineLatest([this.pageSize$, this.currentPage$, this.pokemons$]).pipe(
     map(([size, currentPage, pokemons]) => {
       const start = (currentPage - 1) * size;
       const end = start + size;
@@ -39,8 +41,9 @@ export class PokemonsListComponent {
   );
 
   changeSize(event: Event): void {
+    this.currentPage$.next(1);
     const size = event.target as HTMLInputElement;
-    this.size$.next(Number(size.value));
+    this.pageSize$.next(Number(size.value));
   }
 
   changePage(page: number): void {

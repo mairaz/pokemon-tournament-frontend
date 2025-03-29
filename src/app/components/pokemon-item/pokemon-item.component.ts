@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Pokemon } from '../../types';
-import { NgStyle, TitleCasePipe } from '@angular/common';
+import { NgClass, NgStyle, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-item',
   standalone: true,
-  imports: [TitleCasePipe, NgStyle],
+  imports: [TitleCasePipe, NgStyle, NgClass],
   templateUrl: './pokemon-item.component.html',
   styleUrl: './pokemon-item.component.css'
 })
