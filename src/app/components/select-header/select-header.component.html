@@ -1,21 +1,20 @@
-
-<div class="bg-body-tertiary text-center border m-2 d-md-flex justify-content-center align-items-center gap-4 p-5">
-    <div class="my-2" style="max-width:30rem;">
-      <label for="asc">Sort by</label>
-      <select class="form-select" aria-label="Default select example" [(ngModel)]="sortBy">
-        @for (sortOption of sortOptions; track $index) {
-          <option [value]="sortOption">{{sortOption}}</option>
-        }
-      </select>
-    </div>
-    <div class="my-2" style="max-width:30rem;">
-      <label for="asc">Direction</label>
-      <select class="form-select" aria-label="Default select example" [(ngModel)]="sortDirection">
-        @for (sortDirection of sortDirections; track $index) {
-          <option [value]="sortDirection">{{sortDirection}}</option>
-        }
-
-      </select>
-    </div>
-    <button class="btn bg-primary" (click)="sortPokemons()">Fetch</button>
+<div class="bg-body-tertiary text-center border m-2 d-md-flex justify-content-center align-items-center gap-4 p-2">
+  <div class="my-2" style="max-width:30rem; width:15rem;">
+    <label for="asc">Sort by</label>
+    <select class="form-select" aria-label="Default select example" [(ngModel)]="sortBy">
+      @for (sortOption of sortOptions; track $index) {
+      <option [value]="sortOption">{{sortOption}}</option>
+      }
+    </select>
   </div>
+  <div class="my-2" style="max-width:30rem;width:15rem;">
+    <label for="asc">Direction</label>
+    <select class="form-select" aria-label="Default select example" [(ngModel)]="sortDirection">
+      @for (sortDirection of sortDirections; track $index) {
+      <option [value]="sortDirection">{{sortDirection}}</option>
+      }
+
+    </select>
+  </div>
+  <button class="btn bg-primary" (click)="sortPokemons()">Fetch</button>
+</div>

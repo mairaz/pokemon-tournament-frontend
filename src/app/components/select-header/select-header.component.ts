@@ -14,12 +14,11 @@ export class SelectHeaderComponent {
   @Output() onFetch = new EventEmitter<any>();
 
   sortBy: SortOptions = 'Id'
-  sortDirection: SortDirection = 'desc'
+  sortDirection: SortDirection = 'Desc'
   sortOptions = SortOptions;
   sortDirections = SortDirection;
 
-  sortPokemons() {
-    console.log(this.sortBy, this.sortDirection);
+  sortPokemons(): void {   
     this.onFetch.emit({ sortBy: this.sortBy, sortDirection: this.sortDirection });
   }
 

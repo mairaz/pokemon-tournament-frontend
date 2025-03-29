@@ -18,27 +18,14 @@ import { PokemonsListComponent } from './components/pokemons-list/pokemons-list.
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  title = 'pokemon-tour';
   pokemonService = inject(PokemonService);
-
-
   sortBy!: SortOptions;
   sortDirection!: SortDirection
-
-
   pokemon$ = this.pokemonService.pokemons$
 
-
-
-  fetchPokemon(event: { sortBy: string, sortDirection: string }) {
+  fetchPokemon(event: { sortBy: SortOptions, sortDirection: SortDirection }): void {
     const { sortBy, sortDirection } = event;
-
     this.pokemonService.fetchPokemon.next([sortBy, sortDirection]);
-
   }
-
-
-
-
 
 }

@@ -1,18 +1,19 @@
+<div class="d-flex justify-content-end m-2">
+    <select class="form-select m-0" aria-label="Default select example" style="width:150px"
+        (change)="changeSize($event)" [ngModel]="size$| async">
+        <option value="4">4 items</option>
+        <option value="8">8 items</option>
+        <option value="16">16 items</option>
+    </select>
+</div>
 <div class="bg-body-tertiary border m-2 row p-3 gy-2 justify-content-center">
     @for (pokemon of (pokemonsPage$ | async); track $index) {
-        <div class="col-12 col-md-3">
-            <app-pokemon-item [pokemon]="pokemon"></app-pokemon-item>
-        </div>
+    <div class="col-12 col-md-3">
+        <app-pokemon-item [pokemon]="pokemon"></app-pokemon-item>
+    </div>
     }
 </div>
-<div class="d-flex justify-content-between">
-    <select class="form-select" aria-label="Default select example" style="width:200px" (change)="changeSize($event)">
-        <option selected>Open this select menu</option>
-        <option value="4">4</option>
-        <option value="8">8</option>
-        <option value="16">16</option>
-    </select>
-
+<div class="d-flex justify-content-end m-2">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item" (click)="previousPage()">
@@ -21,8 +22,9 @@
                 </a>
             </li>
             @for (page of pages; track $index) {
-            <li class="page-item" (click)="changePage(page)"><a class="page-link" href="#"
-                    [class.disabled]="page === (currentPage$ | async) ">{{page}}</a></li>
+            <li class="page-item" (click)="changePage(page)">
+                <a class="page-link" [class.disabled]="page === (currentPage$ | async)">{{page}}</a>
+            </li>
             }
             <li class="page-item" (click)="nextPage()">
                 <a class="page-link" aria-label="Next">

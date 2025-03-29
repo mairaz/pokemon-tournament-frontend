@@ -1,5 +1,4 @@
 <div class="container">
-
   <header>
     <div class="bg-body-tertiary text-center border m-2">
       <div class="my-2" style="max-width:30rem; margin:auto">
@@ -11,8 +10,10 @@
     </div>
   </header>
   <app-select-header (onFetch)="fetchPokemon($event)"></app-select-header>
-
-  <app-pokemons-list [pokemons]="(pokemon$ | async) ?? []"></app-pokemons-list>
-
-
+  @if (pokemon$ | async; as pokemon) {
+  <app-pokemons-list [pokemons]="pokemon"></app-pokemons-list>
+  }
+  @else {
+    <p class="text-center" #loading>Loading...</p>
+  }
 </div>

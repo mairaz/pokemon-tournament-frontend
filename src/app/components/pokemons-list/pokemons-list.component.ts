@@ -3,11 +3,12 @@ import { Pokemon } from '../../types';
 import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { PokemonItemComponent } from '../pokemon-item/pokemon-item.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pokemons-list',
   standalone: true,
-  imports: [AsyncPipe, PokemonItemComponent],
+  imports: [AsyncPipe, PokemonItemComponent, FormsModule],
   templateUrl: './pokemons-list.component.html',
   styleUrl: './pokemons-list.component.css'
 })
@@ -37,22 +38,22 @@ export class PokemonsListComponent {
     })
   );
 
-  changeSize(event: Event) {
+  changeSize(event: Event): void {
     const size = event.target as HTMLInputElement;
     this.size$.next(Number(size.value));
   }
 
-  changePage(page: number) {
+  changePage(page: number): void {
     this.currentPage$.next(Number(page));
   }
 
-  nextPage() {
+  nextPage(): void {
     if (this.currentPage$.value < this.pagesCount) {
       this.currentPage$.next(this.currentPage$.value + 1);
     }
   }
 
-  previousPage() {
+  previousPage(): void {
     if (this.currentPage$.value > 1) {
       this.currentPage$.next(this.currentPage$.value - 1);
     }
