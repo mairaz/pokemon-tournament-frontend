@@ -1,9 +1,10 @@
-<div class="bg-body-tertiary border m-2 row p-3">
+<div class="bg-body-tertiary border m-2 row p-3 gy-2 justify-content-center">
     @for (pokemon of (pokemonsPage$ | async); track $index) {
-    {{pokemon.name}}
+        <div class="col-12 col-md-3">
+            <app-pokemon-item [pokemon]="pokemon"></app-pokemon-item>
+        </div>
     }
 </div>
-
 <div class="d-flex justify-content-between">
     <select class="form-select" aria-label="Default select example" style="width:200px" (change)="changeSize($event)">
         <option selected>Open this select menu</option>
